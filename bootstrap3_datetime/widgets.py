@@ -77,7 +77,10 @@ class DateTimePicker(DateTimeInput):
     def render(self, name, value, attrs=None):
         if value is None:
             value = ''
-        input_attrs = self.build_attrs(attrs, type=self.input_type, name=name)
+
+        extra_attrs = dict(type=self.input_type, name=name)
+        input_attrs = self.build_attrs(attrs, extra_attrs)
+
         if value != '':
             # Only add the 'value' attribute if a value is non-empty.
             input_attrs['value'] = force_text(self._format_value(value))
